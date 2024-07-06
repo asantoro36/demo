@@ -1,5 +1,6 @@
 package com.example.demo.entities
 
+import com.example.demo.responses.GetAccountResponse
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -11,4 +12,8 @@ class Account(
     val bank: String,
     val country: String,
     val balance: Double,
-)
+) {
+    fun toDTO() =
+        GetAccountResponse(id, bank, country, balance)
+
+}
