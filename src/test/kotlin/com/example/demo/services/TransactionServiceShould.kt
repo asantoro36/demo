@@ -4,7 +4,6 @@ import com.example.demo.entities.Account
 import com.example.demo.repositories.TransactionRepository
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.*
-import kotlin.test.Ignore
 
 class TransactionServiceShould {
 
