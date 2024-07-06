@@ -7,10 +7,10 @@ private val nationalAndAnotherBankTax = 1.0
 @Entity
 data class Transaction(
     @Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Int? = null,
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "source_account_id")
     val sourceAccount: Account,
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "destination_account_id")
     val destinationAccount: Account,
     val amount: Double,

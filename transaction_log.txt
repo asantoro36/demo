@@ -1,0 +1,14 @@
+Processed - Transaction(id=1, sourceAccount=(Santander - Argentina), destinationAccount=(Santander - Argentina), amount=100.0)
+Fail - could not execute statement [Violación de indice de Unicidad ó Clave primaria: "PUBLIC.CONSTRAINT_INDEX_FF ON PUBLIC.TRANSACTION(SOURCE_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"
+Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_FF ON PUBLIC.TRANSACTION(SOURCE_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 1 )"; SQL statement:
+insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?) [23505-224]] [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; SQL [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; constraint [PUBLIC.CONSTRAINT_INDEX_FF]
+Fail - could not execute statement [Violación de indice de Unicidad ó Clave primaria: "PUBLIC.CONSTRAINT_INDEX_F ON PUBLIC.TRANSACTION(DESTINATION_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 2 )"
+Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_F ON PUBLIC.TRANSACTION(DESTINATION_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 2 )"; SQL statement:
+insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?) [23505-224]] [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; SQL [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; constraint [PUBLIC.CONSTRAINT_INDEX_F]
+Processed - Transaction(id=1, sourceAccount=(Santander - Argentina), destinationAccount=(Santander - Argentina), amount=100.0)
+Fail - could not execute statement [Violación de indice de Unicidad ó Clave primaria: "PUBLIC.CONSTRAINT_INDEX_F ON PUBLIC.TRANSACTION(DESTINATION_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 2 )"
+Unique index or primary key violation: "PUBLIC.CONSTRAINT_INDEX_F ON PUBLIC.TRANSACTION(DESTINATION_ACCOUNT_ID NULLS FIRST) VALUES ( /* 1 */ 2 )"; SQL statement:
+insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?) [23505-224]] [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; SQL [insert into transaction (amount,destination_account_id,source_account_id,id) values (?,?,?,?)]; constraint [PUBLIC.CONSTRAINT_INDEX_F]
+Processed - Transaction(id=1, sourceAccount=(Santander - Argentina), destinationAccount=(Santander - Argentina), amount=100.0)
+Processed - Transaction(id=2, sourceAccount=(Santander - Argentina), destinationAccount=(Santander - Argentina), amount=100.0)
+Processed - Transaction(id=3, sourceAccount=(Santander - Argentina), destinationAccount=(Santander - Argentina), amount=100.0)

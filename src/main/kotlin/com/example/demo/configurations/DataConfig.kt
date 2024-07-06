@@ -15,6 +15,7 @@ class  DataConfig(@Autowired private val accountRepository: AccountRepository) {
             accountRepository.save(Account(1, "Santander", "Argentina", 150000.0))
             accountRepository.save(Account(2, "Santander", "Argentina", 2150000.0))
             accountRepository.save(Account(3, "BBVA", "Argentina", 50000.0))
+            accountRepository.save(Account(4, "BBVA", "EEUU", 510000.0))
         }
     }
 }
