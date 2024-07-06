@@ -19,16 +19,24 @@ class TransactionService(
     fun executeAsyncTask(sourceAccountId: Int, destinationAccountId:Int, amount: Double) {
         println("Executing async task on thread: " + Thread.currentThread().name)
         try{
-            val sourceAccount = accountService.getAccountById(sourceAccountId)
-            val destinationAccount = accountService.getAccountById(destinationAccountId)
+            checkAccounts(sourceAccountId, destinationAccountId)
 
-            if(sourceAccount!=null && destinationAccount!=null) {
-                    processTransaction(Transaction(sourceAccount = sourceAccount, destinationAccount = destinationAccount, amount = amount))
-                }
+            processTransaction(
+                Transaction(
+                    sourceAccount = accountService.getAccountById(sourceAccountId),
+                    destinationAccount = accountService.getAccountById(destinationAccountId),
+                    amount = amount
+                )
+            )
+
             }
         catch (e: Exception) {
             transactionLogger.log(e.message?:"Ocurrio un error", "Fail")
         }
+    }
+
+    private fun checkAccounts(sourceAccountId: Int, destinationAccountId: Int) {
+        if (sourceAccountId == destinationAccountId) throw RuntimeException("Las cuenta origen es la misma que la destino")
     }
 
     fun processTransaction(newTransaction: Transaction) {

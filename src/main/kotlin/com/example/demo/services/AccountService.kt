@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class AccountService(@Autowired val repository: AccountRepository) {
-    fun getAccountById(accountId: Int): Account? {
+    fun getAccountById(accountId: Int): Account {
         try {
             return repository.getReferenceById(accountId)
         } catch (e: EntityNotFoundException) {

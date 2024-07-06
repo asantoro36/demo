@@ -37,7 +37,7 @@ class TransactionServiceShould {
     }
 
     @Test
-    fun `do nothing when source account does not exist`() {
+    fun `log fail when source account does not exist`() {
         val wrongAccount = 1
         given(accountService.getAccountById(wrongAccount)).willThrow(RuntimeException("message"))
         whenCallExecuteAsyncTask(withSourceAccount = wrongAccount)
@@ -46,7 +46,7 @@ class TransactionServiceShould {
     }
 
     @Test
-    fun `return status failed when destination account does not exist`() {
+    fun `log fail when destination account does not exist`() {
         val wrongAccount = 1
         given(accountService.getAccountById(wrongAccount)).willThrow(RuntimeException("message"))
 
@@ -56,11 +56,22 @@ class TransactionServiceShould {
     }
 
     @Test
+    fun `log fail when account is the same`() {
+
+        given(accountService.getAccountById(1)).willReturn(anAccount(withId = 1))
+
+        whenCallExecuteAsyncTask(withDestinationAccount = 1, withSourceAccount = 1)
+        verify(transactionRepository, times(0)).save(any())
+        verify(transactionLogger, times(1)).log(any(), eq("Fail"))
+    }
+
+    @Test
     fun `log transaction procesed status`() {
-        given(accountService.getAccountById(any())).willReturn(anAccount())
+        given(accountService.getAccountById(1)).willReturn(anAccount(withId = 1))
+        given(accountService.getAccountById(10)).willReturn(anAccount(withId = 10))
         given(transactionRepository.save(any<Transaction>())).willReturn(aTransaction(withId = 1))
 
-        whenCallExecuteAsyncTask()
+        whenCallExecuteAsyncTask(withSourceAccount = 1, withDestinationAccount = 10)
 
         verify(transactionLogger, times(1)).log(any(), eq("Processed"))
     }
