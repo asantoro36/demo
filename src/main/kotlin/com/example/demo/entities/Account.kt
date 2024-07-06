@@ -16,4 +16,7 @@ class Account(
     fun toDTO() =
         GetAccountResponse(id, bank, country, balance)
 
+    override fun toString() ="($bank - $country)"
+
+
 }

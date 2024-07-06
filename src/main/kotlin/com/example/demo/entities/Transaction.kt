@@ -26,4 +26,9 @@ data class Transaction(
         }
         return 0.0;
     }
+
+    override fun toString(): String {
+        return "Transaction(id=$id, sourceAccount=$sourceAccount, destinationAccount=$destinationAccount, amount=$amount)"
+    }
+
 }

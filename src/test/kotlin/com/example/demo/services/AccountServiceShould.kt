@@ -2,10 +2,12 @@ package com.example.demo.services
 
 import com.example.demo.entities.Account
 import com.example.demo.repositories.AccountRepository
+import jakarta.persistence.EntityNotFoundException
 
 import org.assertj.core.api.Assertions.*
 import org.mockito.kotlin.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class AccountServiceShould {
 
@@ -14,8 +16,9 @@ class AccountServiceShould {
 
     @Test
     fun `return null when account does not exist`() {
-        val account = service.getAccountById(5);
-        assertThat(account).isNull()
+        given(accountRepository.getReferenceById(any())).willThrow(EntityNotFoundException())
+        val e = assertThrows<RuntimeException> { service.getAccountById(5); }
+        assertThat(e).hasMessage("Account 5 not found")
     }
 
     @Test
